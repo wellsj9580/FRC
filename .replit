@@ -1,2 +1,2 @@
 language = "python3"
-run = "python 03_variable_cost.py"
+run = "python 05_profit_goal.py"

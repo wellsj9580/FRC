@@ -42,6 +42,7 @@ def not_blank (question, error):
       return response 
 
 
+
 def currency(x):
   return "${:.2f}".format(x)
 \
@@ -73,16 +74,16 @@ while item_name.lower() != "xxx":
   if item_name.lower() == "xxx":
     break
   
-  quantity = num_checker ("Quantity:", "The amount must be a whole number more than zero", int)
+  quantity = num_checker("Quantity: ", "The amount must be a whole number more than zero", )
   
-  price = num_checker ("How much for a single item? $", "The price must be a number <more than 0>", float )
+  price = num_checker("How much for a single item? $", "The price must be a number <more than 0>", )
 
   # Add item, quantity and price to lists 
   item_list.append(item_name)
-  quantity_list. append(quantity)
+  quantity_list.append(quantity)
   price_list.append(price)
 
-variable_frame = pandas.Dataframe (variable_dict)
+variable_frame = pandas.DataFrame (variable_dict)
 variable_frame = variable_frame.set_index('Item')
 
 # Calculate cost of each component 
@@ -102,4 +103,4 @@ print(variable_frame)
 
 print()
 
-print ("variabl Costs: ${:.2f}".format (variable_sub))
+print ("variable Costs: ${:.2f}".format (variable_sub))
