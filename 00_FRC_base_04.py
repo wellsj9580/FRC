@@ -1,5 +1,6 @@
 # import libraries 
 import pandas
+import math
 
 # *** Functions go here ***
 
@@ -50,6 +51,7 @@ def yes_no (question):
 
 
 \
+
 def not_blank (question, error):
     
     valid = False
@@ -67,6 +69,7 @@ def not_blank (question, error):
 
 
 \
+
 def currency(x):
   return "${:.2f}".format(x)
 \
@@ -124,18 +127,98 @@ def get_expenses(var_fixed):
   return [expenses_frame, sub_total ]
 \
 
+def expense_print(heading, frame, subtotal):
+  print()
+  print("**** {} Costs ****".format(heading))
+  print(frame)
+  print()
+  print ("{} Costs: ${:.2f}".format(heading, subtotal))
+  return ""
+\
+
+def profit_goal (total_costs):
+  
+  # Initialise variables and error message 
+  error = "Please enter a valid profit goal \n"
+  
+  valid = False
+  while not valid:
+  
+      # Ask for profit goal 
+    response = input ("What is your profit goal (eg $500 or 50%) ")
+  
+    # Check if first character is $
+    if response[0] == '$':
+      profit_type = "$"
+      # Get amount (everything after the $)
+      amount = response[1:]
+      
+    elif response [-1] == "%":
+      profit_type = "%"
+      # Get amount (everything before the %)
+      amount = response[:-1]
+  
+    else:
+      # Set response to amount for now
+      profit_type = "unknown"
+      amount = response 
+  
+    try: 
+      # Checks amoint is a nummber more than zero..
+      amount = float (amount)
+      if amount <= 0: 
+        print (error)
+        continue 
+  
+    except ValueError:
+      print (error)
+      continue 
+  
+    if profit_type == "unknown" and amount >= 100: 
+      dollar_type = yes_no("Do you mean ${:.2f}. ie {:.2f} dollars? y / n".format(amount, amount))
+  
+      # Set profit type based on user answer above
+      if dollar_type =="yes": 
+        profit_type = "$"
+      else: 
+        profit_type = "%"
+  
+    elif profit_type == "unknown" and amount <100: 
+      percent_type = yes_no("Do you mean {}%? , y / n: ".format(amount))
+      if percent_type == "yes": 
+        profit_type = "%"
+      else: 
+        profit_type = "$"
+        
+    # Return profit goal to main routine 
+    if profit_type == "$": 
+      return amount 
+    else: 
+      goal = (amount / 100) * total_costs
+      return goal 
+
+
+
+\
+
+# Rounding function 
+def round_up(amount, round_to):
+  return int(math.ceil(amount / round_to)) * round_to
+\
+
 # **** MAIN ROUTINE GOES HERE ****
+
 # Get product name
 product_name = not_blank("Product name: ", "The product name cant't be blank")
 
-print("Let's get the variable costs...")
+print()
+print("Please enter your variable costs below... ")
 # Get variable costs 
 variable_expenses = get_expenses("variable")
 variable_frame = variable_expenses[0]
 variable_sub = variable = variable_expenses[1]
 
 print()
-
 have_fixed = yes_no("Do you have fixed costs (y / n)? ")
 
 if have_fixed == "yes":
@@ -149,30 +232,47 @@ else:
   fixed_frame = ""
   fixed_sub = 0
 
-# Find total costs 
+# Works out total costs and profit target
+  all_costs = variable_sub + fixed_sub 
+  profit_target = profit_goal(all_costs)
 
-# Ask user for profit goal 
+# Calculate recommended price 
+selling_price = 0 
 
-# Calculate recommended price
+# Rounding 
+to_round = [2.75, 2.25, 2]
+
+for item in to_round: 
+  rounded = round_up(item, 5)
+  print("${:.2f} --> ${:.2f}".format(item,rounded))
 
 # Write data to file
 
 # *** Printing area *** 
+
+print()
+print("**** Fund Raising **** - {} *****".format(product_name))
+print()
+expense_print("Variable", variable_frame, variable_sub)
+
+if have_fixed == "yes": 
+  expense_print("Fixed", fixed_frame [['Cost']], fixed_sub)
+
+print()
+print("**** Total Costs: ${:.2f} ****".format(all_costs))
+print()
+
+print()
+print("**** Profit & Sales Targets ****")
+print("Profit Target: ${:.2f}".format(profit_target))
+print("Total Sales: ${:.2f}".format(all_costs + profit_target))
+
+
 print("**** Variable Costs ****")
 print(variable_frame)
 print()
 
-print ("Variable Costs: ${:.2f}".format (variable_sub))
+print ("Variable Costs: ${:.2f}".format(variable_sub))
 
 print()
-
-if have_fixed == "yes":
-
-  print("**** Fixed Costs ****")
-  print(fixed_frame)
-  print()
-  
-  print ("Fixed Costs: ${:.2f}".format (fixed_sub))
-
-
-
+print("**** Recommended Selling price: ${:.2f}".format(selling_price))
