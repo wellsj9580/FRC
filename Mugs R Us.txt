@@ -1,0 +1,28 @@
+
+*** Mugs R Us ***
+
+--- Variable  Costs ---
+
+          Quantity  Price     Cost
+Item                              
+mugs         100.0  $1.00  $100.00
+printing     100.0  $0.10   $10.00
+
+Variable Sub Total: $110.00
+
+--- Fixed Costs ---
+
+      Quantity   Price    Cost
+Item                          
+rent         1  $25.00  $25.00
+rent         1  $10.00  $10.00
+
+Fixed Costs Sub Total: $35.00
+
+--- Sales Advice ---
+Profit Target: $200.00
+Required Sales: $345.00
+
+
+*** Recommended Price: $4.00 ***
+

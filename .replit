@@ -1,2 +1,2 @@
 language = "python3"
-run = "python 06_recommended_price.py"
+run = "python 00_FRC_base_06.py"

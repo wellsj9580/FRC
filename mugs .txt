@@ -1,0 +1,19 @@
+/n***** mugs  *****
+
+/n----- Variable Costs -----
+
+           Quantity   Price     Cost
+Item                                
+mugs           50.0   $0.10    $5.00
+cat migs       50.0  $10.00  $500.00
+
+Variable Sub Total: $505.00
+
+
+
+Profit Target: $100.00
+
+Required Sales: $605.00
+
+Recommended Price: $9.00
+

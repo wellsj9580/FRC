@@ -1,0 +1,25 @@
+
+***** mugs r us  *****
+
+
+----- Variable Costs -----
+
+           Quantity   Price     Cost
+Item                                
+cat mugs       50.0   $5.00  $250.00
+mug '          50.0  $10.00  $500.00
+
+Variable Sub Total: $750.00
+
+       Quantity    Price     Cost
+Item                             
+rent          1  $125.00  $125.00
+
+ --- Sales Advice --- 
+
+Profit Target: $100.00
+
+Required Sales: $975.00
+
+*** Recommended Price: $12.00 ***
+
